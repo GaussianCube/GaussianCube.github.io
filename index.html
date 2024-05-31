@@ -128,56 +128,31 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/omni/rank_07_0352.mp4"
+            <source src="./static/videos/fancy/car.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-shiba">
           <video poster="" id="shiba" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/omni/rank_06_0595.mp4"
+            <source src="./static/videos/fancy/chair.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/omni/rank_00_1309.mp4"
+            <source src="./static/videos/fancy/avatar.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/cars/rank_00_0237.mp4"
+            <source src="./static/videos/fancy/text-to-3d.mp4"
                     type="video/mp4">
           </video>
         </div>
         <div class="item item-chair-tp">
           <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/cars/rank_00_0022.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/cars/rank_00_0056.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/chairs/rank_05_0889.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/chairs/rank_01_1031.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="80%" width="80%">
-            <source src="./static/videos/chairs/rank_00_0424.mp4"
+            <source src="./static/videos/fancy/omni.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -202,148 +177,6 @@
     </div>
     <!--/ Abstract. -->
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method</h2>
-        <div>
-          <img src="static/images/pipeline.png" class="center">
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            Our framework comprises two main stages of representation construction and 3D diffusion. In the representation construction stage, given multi-view renderings of a 3D asset, we perform <i>densification-constrained fitting</i> to obtain 3D Gaussians with constant numbers. Subsequently, the Gaussians are voxelized into GaussianCube via <i>Optimal Transport</i>. In the 3D diffusion stage, our <i>3D diffusion model</i> is trained to generate GaussianCube from Gaussian noise.
-          </p>
-        </div>
-        
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Densification-constrained Fitting</h3>
-        <div>
-          <img src="static/images/densification.png" class="center" height="60%" width="60%">
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            The fitting process encompasses several distinct stages: 1) Densification Detection: Assuming the current iteration includes $N_c$ Gaussians, we identify densification candidates by selecting those with view-space position gradient magnitudes exceeding a predefined threshold $\tau$. We denote the number of candidates as $N_d$. 2) Candidate sampling: To prevent exceeding the predefined maximum of $N_{\text{max}}$ Gaussians, we select $\min{(N_{\text{max}} - N_c, N_d)}$ Gaussians with the largest view-space positional gradients from the candidates for densification. 3) Densification: We modify the densification approach by alternating between cloning and splitting actions into separate steps. 4) Pruning Detection and Pruning: We identify and remove the Gaussians with $\alpha$ less than a small threshold $\epsilon$. After completing the fitting process, we pad Gaussians with $\alpha=0$ to reach the target count of $N_{\text{max}}$ without affecting the rendering results.
-          </p>
-        </div>
-        
-      </div>
-    </div>
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Gaussian voxelization via Optimal Transport</h3>
-        <div>
-          <img src="static/images/OT.png" class="center" height="60%" width="60%">
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            We then employ Optimal Transport to organize the resultant Gaussian into a predetermined voxel grid. Intuitively, we aim to "move" each Gaussian into a voxel grid while maintaining the geometry relations as much as possible. Therefore, we formulate this into an Optimal Transport Problem between the Gaussians' spatial positions and the centers of voxel grid.
-          </p>
-        </div>
-        
-      </div>
-    </div>
-
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <h2 class="title is-3">Class-conditioned Generation Results</h2>
-        <p></p>
-      </div>
-
-      <div class="columns is-centered has-text-centered">
-        <h3 class="title is-4">OmniObject3D</h3>
-        <p></p>
-      </div>
-  
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_07_0352.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_00_1309.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_06_0595.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_07_0603.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_00_1090.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_01_0174.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_07_0735.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/omni/rank_07_0903.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      </div>
-
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <h2 class="title is-3">Unconditional Generation Results</h2>
@@ -359,80 +192,8 @@
         <div class="column">
           <div class="columns is-centered has-text-centered">
             <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0022.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0056.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0237.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0452.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0070.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_04_0491.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0011.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-  
-        <div class="column">
-          <div class="columns is-centered has-text-centered">
-            <div class="column content">
-              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                <source src="./static/videos/cars/rank_00_0717.mp4" type="video/mp4">
+              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="100%" height="100%">
+                <source src="./static/videos/car_compress.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -454,87 +215,123 @@
           <div class="column">
             <div class="columns is-centered has-text-centered">
               <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_01_1031.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_07_5027.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_02_0834.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_05_1494.mp4" type="video/mp4">
+                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="100%" height="100%">
+                  <source src="./static/videos/chair_compress.mp4" type="video/mp4">
                 </video>
               </div>
             </div>
           </div>
         </div>
-    
+      </div>
+
+      <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_04_0852.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_00_0424.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_00_0724.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-          </div>
-    
-          <div class="column">
-            <div class="columns is-centered has-text-centered">
-              <div class="column content">
-                <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="80%" height="80%">
-                  <source src="./static/videos/chairs/rank_05_0889.mp4" type="video/mp4">
-                </video>
-              </div>
+          <h2 class="title is-3">Class-conditioned Generation Results</h2>
+          <p></p>
+        </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <h3 class="title is-4">OmniObject3D</h3>
+        <p></p>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="columns is-centered has-text-centered">
+            <div class="column content">
+              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="100%" height="100%">
+                <source src="./static/videos/omni_compress.mp4" type="video/mp4">
+              </video>
             </div>
           </div>
         </div>
-    
+      </div>
+
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <h2 class="title is-3">3D Digital Avatar Creation from Single Portrait Image</h2>
         </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="columns is-centered has-text-centered">
+            <div class="column content">
+              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="100%" height="100%">
+                <source src="./static/videos/image-to-3d_compress.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <p>
+          The portraits we used in this demo are either ai-generated or under free license. The 3D digital avatars generated by our model are for research purposes only.
+        </p>
+      </div>
+
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <h2 class="title is-3">Text-to-3D Synthesis</h2>
+          <p></p>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="columns is-centered has-text-centered">
+            <div class="column content">
+              <video id="matting-video" autoplay="" controls="" muted="" loop="" playsinline="" width="100%" height="100%">
+                <source src="./static/videos/text-to-3d_compress.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method</h2>
+          <div>
+            <img src="static/images/pipeline.png" class="center">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Our framework comprises two main stages of representation construction and 3D diffusion. In the representation construction stage, given multi-view renderings of a 3D asset, we perform <i>densification-constrained fitting</i> to obtain 3D Gaussians with constant numbers. Subsequently, the Gaussians are voxelized into GaussianCube via <i>Optimal Transport</i>. In the 3D diffusion stage, our <i>3D diffusion model</i> is trained to generate GaussianCube from Gaussian noise.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h3 class="title is-4">Densification-constrained Fitting</h3>
+          <div>
+            <img src="static/images/densification.png" class="center" height="60%" width="60%">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              The fitting process encompasses several distinct stages: 1) Densification Detection: Assuming the current iteration includes $N_c$ Gaussians, we identify densification candidates by selecting those with view-space position gradient magnitudes exceeding a predefined threshold $\tau$. We denote the number of candidates as $N_d$. 2) Candidate sampling: To prevent exceeding the predefined maximum of $N_{\text{max}}$ Gaussians, we select $\min{(N_{\text{max}} - N_c, N_d)}$ Gaussians with the largest view-space positional gradients from the candidates for densification. 3) Densification: We modify the densification approach by alternating between cloning and splitting actions into separate steps. 4) Pruning Detection and Pruning: We identify and remove the Gaussians with $\alpha$ less than a small threshold $\epsilon$. After completing the fitting process, we pad Gaussians with $\alpha=0$ to reach the target count of $N_{\text{max}}$ without affecting the rendering results.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h3 class="title is-4">Gaussian voxelization via Optimal Transport</h3>
+          <div>
+            <img src="static/images/OT.png" class="center" height="60%" width="60%">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              We then employ Optimal Transport to organize the resultant Gaussian into a predetermined voxel grid. Intuitively, we aim to "move" each Gaussian into a voxel grid while maintaining the geometry relations as much as possible. Therefore, we formulate this into an Optimal Transport Problem between the Gaussians' spatial positions and the centers of voxel grid.
+            </p>
+          </div>
+          
+        </div>
+      </div>
 
   </div>
 </section>
